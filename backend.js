@@ -45,6 +45,23 @@ app.get("/product-manager/api/products", async (req, res) => {
   }
 });
 
+app.delete("/product-manager/api/products/:productName", async (req, res) => {
+  const productName = req.params.productName;
+
+  try {
+    const deletedProduct = await Product.findOneAndDelete({ name: productName });
+
+    if (deletedProduct) {
+      res.status(200).json({ message: "Product deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.post("/product-manager/api", async (req, res) => {
   const { name, price, imageSrc, amount } = req.body;
   try {
