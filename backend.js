@@ -9,7 +9,7 @@ app.use(cors());
 main().catch((error) => console.log("Error: ", error));
 async function main() {
   await mongoose.connect(
-    "mongodb+srv://dbUser:BeU6AOOrzmR1C640@cluster0.fydlxqf.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://dbUser:<password>@cluster0.fydlxqf.mongodb.net/?retryWrites=true&w=majority"
     );
 }
 const productSchema = mongoose.Schema({
